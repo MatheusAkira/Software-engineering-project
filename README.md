@@ -8,10 +8,10 @@ Eum inventore placeat sed suscipit quaerat qui enim odit et modi galisum ut temp
 Et consequatur quia ex autem dolorem et dolore magni ut quia pariatur. Ea cupiditate nesciunt qui iusto dolorem ut voluptatibus alias. At nihil laudantium a reiciendis quae ea voluptas voluptates ea sunt praesentium sed molestiae officiis eos minus fugiat. Ex fugiat delectus nam quisquam expedita ut nesciunt soluta est natus consectetur aut enim voluptatum.
 
 ## Equipe
-- Ana Luisa Araujo Bastos: Full Stack Developer
-- Iasmin Correa Araujo: Backend Developer
-- Matheus Felipe Akira de Assis Oliveira: Frontend Developer
-- Thais Ferreira da Silva: UI/UX Designer
+- Ana Luisa Araujo Bastos: Backend Developer
+- Iasmin Correa Araujo: Full Stack Developer
+- Matheus Felipe Akira de Assis Oliveira: Backend Developer
+- Thais Ferreira da Silva: Frontend Developer
 
 ## Tecnologias Utilizadas
 - Linguagem: JavaScript (Node.js)
