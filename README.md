@@ -31,7 +31,7 @@ As principais funcionalidades incluem a capacidade de gerenciar eventos e tarefa
 
 ## Backlog da Sprint:
 
-##### 1. Adicionar, editar e deletar eventos na agenda:
+### 1. Adicionar, editar e deletar eventos na agenda:
 - Tarefa 1: Instalar e configurar banco de dados [Todos]
 - Tarefa 2: Instalar Java, Node.js e npm [Todos]
 - Tarefa 3: Criar a classe de entidade Evento e mapeá-la para o banco [Iasmin, Matheus]
@@ -48,7 +48,7 @@ As principais funcionalidades incluem a capacidade de gerenciar eventos e tarefa
 - Tarefa 14: Implementar funcionalidade para remover evento do banco de dados. [Matheus]
 - Tarefa 15: Remover o evento da tela quando excluído [Thaís]
 
-##### 2. Adicionar e marcar tarefas como concluídas na agenda:
+### 2. Adicionar e marcar tarefas como concluídas na agenda:
 - Tarefa 1: Criar a classe de entidade Tarefa e mapeá-la para o banco [Iasmin, Ana Luísa]
 - Tarefa 2: Criar formulário para adicionar nova tarefa com campos para título e data [Thaís]
 - Tarefa 3: Implementar lógica de criar nova tarefa no backend [Ana Luísa]
@@ -62,12 +62,12 @@ As principais funcionalidades incluem a capacidade de gerenciar eventos e tarefa
 - Tarefa 11: Criar botão de exclusão de tarefa [Thaís]
 - Tarefa 12: Remover a tarefa da tela quando concluída ou excluída [Thaís]
 
-##### 3. Visualizar os compromissos da agenda:
+### 3. Visualizar os compromissos da agenda:
 - Tarefa 1: Criar página de visualização geral da agenda [Thaís, Iasmin]
 - Tarefa 2: Implementar no backend a lógica de obter eventos e tarefas do banco de dados para exibição [Matheus]
 - Tarefa 3: Implementar ordenação de eventos e tarefas por data e hora [Iasmin]
 
-##### 4. Criar conta e fazer login:
+### 4. Criar conta e fazer login:
 - Tarefa 1: Implementar página de registro de conta [Thaís]
 - Tarefa 2: Criar tabela no banco de dados para armazenar informações de conta [Iasmin]
 - Tarefa 3: Implementar página de login [Thaís]
