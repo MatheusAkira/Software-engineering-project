@@ -27,6 +27,16 @@ public class Evento {
     //    this.local = local;
     //}
     
+    public Evento(EventoDTO dto) {
+
+        
+        this.titulo = dto.titulo();
+        this.data = LocalDate.parse(dto.data());
+        this.hora = LocalTime.parse(dto.hora());
+        this.local = dto.local();
+    
+    }
+
     // Getters e Setters
     public Long getId() {
         return id;
