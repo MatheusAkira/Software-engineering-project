@@ -5,8 +5,4 @@ public record TarefaDTO(
     String data,
     String hora,
     Integer prazoEmDias
-) {
-
-
-    
-}
+) {}

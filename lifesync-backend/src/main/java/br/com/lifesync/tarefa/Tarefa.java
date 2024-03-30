@@ -2,6 +2,7 @@ package br.com.lifesync.tarefa;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,18 +23,17 @@ public class Tarefa {
     private boolean concluida;
     
     // Construtor
-    public Tarefa() {
-    }
-    public Tarefa(TarefaDTO dto) {
+    public Tarefa() {}
 
+    public Tarefa(TarefaDTO dto) {
         this.titulo = dto.titulo();
         this.data = LocalDate.parse(dto.data());
         this.hora = LocalTime.parse(dto.hora());
         this.prazoEmDias = dto.prazoEmDias();
-    
+        this.ativa = true;
+        this.concluida = false;
     }
 
-    
     // Getters e Setters
     public Long getId() {
         return id;
