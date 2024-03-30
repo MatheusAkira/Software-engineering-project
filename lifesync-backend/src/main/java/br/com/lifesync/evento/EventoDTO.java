@@ -6,8 +6,4 @@ public record EventoDTO(
     String data,
     String hora,
     String local
-) {
-
-
-
-}
+) {}

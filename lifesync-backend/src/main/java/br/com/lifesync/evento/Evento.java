@@ -18,23 +18,14 @@ public class Evento {
     private LocalDate data;
     private LocalTime hora;
     private String local;
-    
-    // Construtor
-    //public Evento(String titulo, Date data, String hora, String local) {
-    //    this.titulo = titulo;
-    //    this.data = data;
-     //   this.hora = hora;
-    //    this.local = local;
-    //}
+
+    public Evento(){}
     
     public Evento(EventoDTO dto) {
-
-        
         this.titulo = dto.titulo();
         this.data = LocalDate.parse(dto.data());
         this.hora = LocalTime.parse(dto.hora());
         this.local = dto.local();
-    
     }
 
     // Getters e Setters
