@@ -1,0 +1,15 @@
+.blocoTarefa {
+    background-color: #D9D9D9;
+    border-radius: 12px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    padding: 1vw;
+    margin-bottom: 1vw;
+    font-size: large;
+}
+
+textarea{
+    width: 98%;
+    height: 100px;
+    
+}

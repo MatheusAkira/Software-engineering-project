@@ -1,6 +1,9 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import Home from './pages/Home';
+//import SingIn from './pages/SingIn';
 
+/*
 function App() {
   return (
     <div className="App">
@@ -17,6 +20,17 @@ function App() {
         >
           Learn React
         </a>
+      </header>
+    </div>
+  );
+}
+*/
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <Home />
       </header>
     </div>
   );
