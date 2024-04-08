@@ -27,7 +27,7 @@ public class Tarefa {
     // Construtor
     public Tarefa() {}
 
-    public Tarefa(TarefaDTO dto) {
+    public Tarefa(CadastroTarefaDTO dto) {
         this.titulo = dto.titulo();
         this.data = LocalDate.parse(dto.data());
         this.hora = LocalTime.parse(dto.hora());
@@ -94,5 +94,18 @@ public class Tarefa {
     }
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    //Método para editar tarefas
+    public void atualizarInformacoes(CadastroTarefaDTO dto) {
+        if (dto.titulo() != null) {
+            this.titulo = dto.titulo();
+        }
+        if (dto.data() != null) {
+            this.data = LocalDate.parse(dto.data());
+        }
+        if (dto.hora() != null) {
+            this.hora = LocalTime.parse(dto.hora());
+        }
     }
 }
