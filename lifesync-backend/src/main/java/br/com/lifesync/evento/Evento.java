@@ -2,10 +2,12 @@ package br.com.lifesync.evento;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import br.com.lifesync.usuario.Usuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,6 +20,8 @@ public class Evento {
     private LocalDate data;
     private LocalTime hora;
     private String local;
+    @ManyToOne
+    private Usuario usuario;
 
     public Evento(){}
     
@@ -68,22 +72,11 @@ public class Evento {
     public void setLocal(String local) {
         this.local = local;
     }
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }
-
-
-
-//public class Main {
-   // public static void main(String[] args) {
-        // Exemplo de uso da classe EventoService para adicionar um evento
-        //EventoService eventoService = new EventoService();
-        
-        // Dados do evento
-        //String titulo = "Reunião de Projeto";
-        //Date data = new Date(); // Aqui você precisa definir a data do evento
-        //String hora = "10:00"; // Aqui você precisa definir a hora do evento
-        //String local = "Sala de Reuniões";
-        
-        // Adicionando o evento
-        //eventoService.adicionarEvento(titulo, data, hora, local);
-    //}
-//}

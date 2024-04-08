@@ -2,11 +2,14 @@ package br.com.lifesync.tarefa;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import br.com.lifesync.usuario.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +24,8 @@ public class Tarefa {
     private Integer prazoEmDias;
     private boolean ativa;
     private boolean concluida;
+    @ManyToOne
+    private Usuario usuario;
     
     // Construtor
     public Tarefa() {}
@@ -95,5 +100,11 @@ public class Tarefa {
 
     public boolean isConcluida() {
         return concluida;
+    }
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
