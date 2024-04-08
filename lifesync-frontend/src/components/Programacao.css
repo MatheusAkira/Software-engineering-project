@@ -1,0 +1,13 @@
+.programacaoBox{
+    font-size: 0.8em;
+    color: white;
+}
+
+.tabelaProgramacao{
+    width: 100%;
+    height: 70vh;
+    border-collapse: collapse;
+    text-align: left;
+    border-radius: 12px;
+
+}
