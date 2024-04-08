@@ -15,7 +15,9 @@
 .container {
     display: flex;
     flex-direction: column; /* Mudança aqui para colocar os itens em uma coluna */
-    margin: 0 auto;
+    background-color: #262335;
+    height: 100vh; 
+    width: 100vw; 
 }
 
 .columns {
