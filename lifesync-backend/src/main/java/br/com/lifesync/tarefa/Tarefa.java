@@ -3,12 +3,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import br.com.lifesync.usuario.Usuario;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -21,7 +19,6 @@ public class Tarefa {
     private String titulo;
     private LocalDate data;
     private LocalTime hora;
-    private Integer prazoEmDias;
     private boolean ativa;
     private boolean concluida;
     @ManyToOne
@@ -34,7 +31,6 @@ public class Tarefa {
         this.titulo = dto.titulo();
         this.data = LocalDate.parse(dto.data());
         this.hora = LocalTime.parse(dto.hora());
-        this.prazoEmDias = dto.prazoEmDias();
         this.ativa = true;
         this.concluida = false;
     }
@@ -70,14 +66,6 @@ public class Tarefa {
     
     public void setHora(LocalTime hora) {
         this.hora = hora;
-    }
-    
-    public int getPrazo() {
-        return prazoEmDias;
-    }
-    
-    public void setLocal(Integer prazo) {
-        this.prazoEmDias = prazo;
     }
 
     //Métodos de ativação e desativação de tarefas
