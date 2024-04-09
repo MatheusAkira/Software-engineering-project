@@ -21,6 +21,7 @@ function SingIn(){
                 </div>
             </div>
             <div class="singinBox">
+                <h1> Entrar </h1>
                 <form onSubmit={validarUsuario}>
                     <div>
                         <input type="email" placeholder="Nome de Usuário ou Email" />
