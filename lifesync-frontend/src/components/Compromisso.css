@@ -1,0 +1,28 @@
+.blocoCompromissos {
+    padding: 1vw;
+    font-size: large;
+    color: white;
+    background-color:#241B2F;
+}
+
+textarea{
+    width: 98%;
+    height: 100px;
+    
+}
+
+.dropEditor {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+#botaoEditar{
+    width: auto;
+    height: 30px;
+    float:right;
+    margin: 0;
+    padding: 0;
+}
