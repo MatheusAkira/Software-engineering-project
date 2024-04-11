@@ -2,6 +2,7 @@ package br.com.lifesync.evento;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import br.com.lifesync.compromisso.Compromisso;
 import br.com.lifesync.usuario.Usuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "eventos")
-public class Evento {
+public class Evento extends Compromisso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

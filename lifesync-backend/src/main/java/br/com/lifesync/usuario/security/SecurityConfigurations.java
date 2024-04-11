@@ -31,6 +31,7 @@ public class SecurityConfigurations {
                     req.requestMatchers(HttpMethod.GET, "/tarefas").hasRole("USUARIO");
                     req.requestMatchers(HttpMethod.POST, "/eventos").hasRole("USUARIO");
                     req.requestMatchers(HttpMethod.GET, "/eventos").hasRole("USUARIO");
+                    req.requestMatchers(HttpMethod.GET, "/compromissos").hasRole("USUARIO");
                     req.requestMatchers("/login", "/login/**").permitAll();
                     req.requestMatchers("/signin", "/signin/**").permitAll();
                     req.anyRequest().authenticated();
