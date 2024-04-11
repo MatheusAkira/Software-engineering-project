@@ -4,24 +4,48 @@ import './SingIn.css';
 
 function SingIn(){
 
-    //Variáveis do formulario de login
+    // Variáveis do formulário de login
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
     function validarUsuario(e){
-        console.log('Usuario validado');
         e.preventDefault();
         
-        console.log('Email: ' + email);
-        console.log('Senha: ' + senha);
-        
-        //redirecionar para a página home
-        window.location.href = '/home';
+        // Criar objeto com os dados do formulário
+        const formData = {
+            email: email,
+            senha: senha
+        };
+
+        // Enviar os dados para o backend via POST usando Fetch API
+        fetch('http://localhost:8080/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao efetuar login');
+            }
+            return response.text(); // Retorna o texto da resposta
+        })
+        .then(data => {
+            // Armazenar o token recebido na resposta no localStorage
+            localStorage.setItem('token', data); 
+            console.log('Login efetuado com sucesso. Token recebido:', data);
+            // redirecionar para a página home
+            window.location.href = '/home';
+        })
+        .catch(error => {
+            console.error('Erro ao efetuar login:', error);
+        });
     }
 
     return (
         <div className="signin-container">
-            <div class="logo">
+            <div className="logo">
                 <div>
                     <img src={logoLifeSync} className="App-logoLifeSync" alt="logoLifeSync" />
                 </div>
@@ -29,7 +53,7 @@ function SingIn(){
                     <a>LifeSync</a>
                 </div>
             </div>
-            <div class="singinBox">
+            <div className="singinBox">
                 <h1> Entrar </h1>
                 <form onSubmit={validarUsuario}>
                     <div>

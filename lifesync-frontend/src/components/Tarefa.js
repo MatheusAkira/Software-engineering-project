@@ -1,44 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Tarefa.css';
 
 function Tarefa() {
-    //Criar variaveis pro formulário:
-
-    const [id, setId] = useState('');
     const [titulo, setTitulo] = useState('');
     const [data, setData] = useState('');
     const [hora, setHora] = useState('');
-    const [prazoEmDias, setPrazoEmDias] = useState('');
-    const [ativa, setAtiva] = useState('');
-    const [concluida, setConcluida] = useState('');
+    const [token, setToken] = useState('');
+
+    useEffect(() => {
+        // Obter token de autenticação do localStorage
+        const storedToken = localStorage.getItem('token');
+        console.log('Token obtido:', storedToken); // Verifica se o token foi corretamente obtido
+        if (storedToken) {
+            setToken(storedToken);
+        }
+    }, []);
 
     function cadastrarTarefa(e) {
-        //Cadastrar tarefa
         e.preventDefault();
-        console.log('Tarefa cadastrada');
-        console.log('Titulo: ' + titulo);
-        console.log('Data: ' + data);
-        console.log('Hora: ' + hora);
+        
+        const formData = {
+            titulo: titulo,
+            data: data,
+            hora: hora
+            // Adicione outros campos conforme necessário
+        };
+
+        // Enviar dados para a API
+        fetch('http://localhost:8080/tarefas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Tarefa cadastrada com sucesso!');
+                // Adicione qualquer lógica adicional após o cadastro bem-sucedido
+            } else {
+                console.error('Falha ao cadastrar tarefa.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao cadastrar tarefa:', error);
+        });
     }
 
-    //Formulário com titulo, data, hora, prazonEmDias
     return (
-
-        <div class="blocoTarefa">
+        <div className="blocoTarefa">
             <form onSubmit={cadastrarTarefa}>
                 <div>
-                    <label> Titulo </label>
+                    <label>Titulo</label>
+                    <textarea type="text" value={titulo} onChange={e => setTitulo(e.target.value)} />
                 </div>
                 <div>
-                    <textarea type="text" value={titulo} onChange={e => setTitulo(e.target.value)}> </textarea>
-                </div>
-                <div>
-                    <label> Data </label>
+                    <label>Data</label>
                     <input type="date" value={data} onChange={e => setData(e.target.value)} />
-                
-                    <label> Hora </label>
+                    <label>Hora</label>
                     <input type="time" value={hora} onChange={e => setHora(e.target.value)} />
-
                 </div>
                 <input type="submit" value="Cadastrar" />
             </form>
