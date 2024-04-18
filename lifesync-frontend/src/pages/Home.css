@@ -1,6 +1,8 @@
+/* Header */
 .App-logoLifeSync {
     height: 30px;
-    margin-right: 30px;
+    margin-right: 20px;
+    margin-top: 5px;
 }
 
 .header {
@@ -8,9 +10,55 @@
     height: 1vw + 30px;
     color: white;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* Alterado para espaço entre os itens */
+    position: relative; /* Adicionado */
 }
+
+.headerLogo{
+    float: left;
+    width: 95%;
+    align-items: center;
+    text-align: center;
+    font-size:xx-large;
+}
+
+.dropbtn{
+    height: 30px;
+    position: absolute; /* Adicionado */
+    top: 50%; /* Ajustado conforme necessário */
+    right: 10px; /* Ajustado conforme necessário */
+    transform: translateY(-50%); /* Para centralizar verticalmente */
+    float: right;
+  }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+  }
+
+/* Body */
   
 .container {
     display: flex;
@@ -33,11 +81,11 @@
     float: left;
     width: 40%;
 }
+
 #coluna2{
     float: right;
     width: 50%;
 }
-
 
 .column {
     width: 45%;

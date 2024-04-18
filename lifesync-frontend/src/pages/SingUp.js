@@ -51,8 +51,9 @@ function SingUp(){
     return (
         <div className="signup-container">
             <div className="logo">
-                <div>
+                <div className="logo-container">
                     <img src={logoLifeSync} className="App-logoLifeSync" alt="logoLifeSync" />
+                    <a>LifeSync</a>
                 </div>
             </div>
             <div className="singupBox">
@@ -69,6 +70,9 @@ function SingUp(){
                     </div>
                     <div>
                         <button type="button" onClick={validarUsuario}> Cadastrar </button>
+                    </div>
+                    <div>
+                        Já é cadastrado? <a href="/">Faça Login</a>
                     </div>
                 </form>
             </div>

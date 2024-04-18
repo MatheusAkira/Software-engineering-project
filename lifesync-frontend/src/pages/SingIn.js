@@ -46,10 +46,8 @@ function SingIn(){
     return (
         <div className="signin-container">
             <div className="logo">
-                <div>
+                <div className="logo-container">
                     <img src={logoLifeSync} className="App-logoLifeSync" alt="logoLifeSync" />
-                </div>
-                <div>
                     <a>LifeSync</a>
                 </div>
             </div>
