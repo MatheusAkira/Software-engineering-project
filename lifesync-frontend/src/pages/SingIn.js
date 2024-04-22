@@ -61,7 +61,7 @@ function SingIn(){
                         <input type="password" placeholder="Senha" value={senha} onChange={e => setSenha(e.target.value)} />
                     </div>
                     <div>
-                        <button type="submit">Entrar</button>
+                        <button class="hoverButton" type="submit">Entrar</button>
                     </div>
                     <div>
                         Não tem uma conta? <a href="/singup">Cadastre-se</a>

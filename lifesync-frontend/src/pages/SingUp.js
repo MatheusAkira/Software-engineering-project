@@ -69,7 +69,7 @@ function SingUp(){
                         <input type="password" placeholder="Senha" value={senha} onChange={e => setSenha(e.target.value)} />
                     </div>
                     <div>
-                        <button type="button" onClick={validarUsuario}> Cadastrar </button>
+                        <button class="hoverButton" type="submit" onClick={validarUsuario}> Cadastrar </button>
                     </div>
                     <div>
                         Já é cadastrado? <a href="/">Faça Login</a>

@@ -10,7 +10,6 @@ import './Home.css';
 
 function Home(){
     // Ao clicar em botaoNovaTarefa mostrar novaTarefa
-
     
     useEffect(() => {
         // Ao clicar em botaoNovaTarefa mostrar novaTarefa
@@ -50,8 +49,9 @@ function Home(){
                 <div class="dropdown">
                     <img src={fotoPerfil} class="dropbtn" alt="fotoPerfil" />
                     <div class="dropdown-content">
-                        <a href="#">Perfil</a>
-                        <a href="#">Sair</a>
+                        <a href="/home">Home</a>
+                        <a href="/perfil">Perfil</a>
+                        <a href="/singIn">Sair</a>
                     </div>
                 </div>       
             </div>

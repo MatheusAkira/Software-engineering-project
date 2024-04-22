@@ -48,11 +48,29 @@
     display: block;
 }
 
-button{
+
+.hoverButton {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #63507B;
     border: 2px solid black;
     border-radius: 12px;
+    box-shadow: 2px 5px #999;
     width: 30%;
     height: 8vh;
     margin: 3% auto;
-
+}
+  
+.hoverButton:hover {background-color: #3e8e41}
+  
+.hoverButton:active {
+    background-color: #63507B;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
