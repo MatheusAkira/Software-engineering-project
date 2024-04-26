@@ -2,27 +2,18 @@
     padding: 1vw;
     font-size: large;
     color: white;
-    background-color:#241B2F;
+    background-color: #241B2F;
 }
 
-textarea{
+textarea {
     width: 98%;
     height: 100px;
-    
 }
 
-.dropEditor {
-    display: none;
-}
-
-.show {
-    display: block;
-}
-
-#botaoEditar{
+#botaoEditar {
     width: auto;
     height: 30px;
-    float:right;
+    float: right;
     margin: 0;
     padding: 0;
 }

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import logoLifeSync from '../logoLifeSync.png';
+import fotoPerfil from '../fotoPerfil.png';
 import Calendar from '../components/Calendar';
 import Tarefa from '../components/Tarefa';
 import Evento from '../components/Evento';
@@ -36,12 +37,23 @@ function Home(){
             }
         }
     }, []); // Executar apenas uma vez após a montagem
-
+    
     return (
         <div class="container">
             <div id="header" class="header">
-                <img src={logoLifeSync} className="App-logoLifeSync" alt="logoLifeSync" />
-                <h1>LifeSync</h1>
+                <div class="headerLogo">
+                    <img src={logoLifeSync} className="App-logoLifeSync" alt="logoLifeSync" />
+                    <a>LifeSync</a>  
+                </div>
+                
+                <div class="dropdown">
+                    <img src={fotoPerfil} class="dropbtn" alt="fotoPerfil" />
+                    <div class="dropdown-content">
+                        <a href="/home">Home</a>
+                        <a href="/perfil">Perfil</a>
+                        <a href="/singIn">Sair</a>
+                    </div>
+                </div>       
             </div>
             <div class="columns">
                 <div id="coluna1" class="column">
