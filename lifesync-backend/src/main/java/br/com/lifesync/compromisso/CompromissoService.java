@@ -8,8 +8,6 @@ import br.com.lifesync.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -35,7 +33,7 @@ public class CompromissoService {
     private List<Compromisso> buscarCompromissosDoUsuarioLogado() {
         Usuario usuario = usuarioService.obterUsuarioLogado();
         List<Compromisso> compromissos = new ArrayList<>();
-        compromissos.addAll(tarefaRepository.findByUsuario(usuario));
+        compromissos.addAll(tarefaRepository.findByUsuarioAndAtivaTrue(usuario));
         compromissos.addAll(eventoRepository.findByUsuario(usuario));
         return compromissos;
     }

@@ -1,73 +1,100 @@
 import React, { useState, useEffect } from 'react';
 import './Compromisso.css';
 
-function Compromisso( {compromisso} ) {
-    //Variáveis de compromisso
+function Compromisso({ compromisso }) {
     const [hora, setHora] = useState(compromisso.hora);
     const [data, setData] = useState(compromisso.data);
     const [nome, setNome] = useState(compromisso.nome);
-    const [token, setToken] = useState('');
 
-    //Ao clicar no botão de editar, mostrar o formulario de edição
+    const [showEditor, setShowEditor] = useState(false);
+
     useEffect(() => {
         document.getElementById('botaoEditar').onclick = function () {
-            var editor = document.getElementById('editor');
-            var bloco = document.getElementById('blocoCompromissos');
-            if (editor.style.display === 'none') {
-                editor.style.display = 'block';
-                bloco.style.backgroundColor = 'brown';
-            }else {
-                editor.style.display = 'none';
-                bloco.style.backgroundColor = '#241B2F';
-            }
-        }
+            setShowEditor((prev) => !prev);
+        };
     }, []);
-
-
-    //Função para editar um compromisso
 
     function editarProgramacao(e) {
         e.preventDefault();
+        const token = localStorage.getItem('token');
 
-        console.log('Editando compromisso:', compromisso);
-        console.log('Novos dados:', hora, data, nome);
-        compromisso.hora = hora;
-        compromisso.data = data;
-        compromisso.nome = nome;
-        
-        //Recarregar a pagina
-        window.location.reload();
+        const url = compromisso.tipo === 'tarefa' ? `http://localhost:8080/tarefas/${compromisso.id}` : `http://localhost:8080/eventos/${compromisso.id}`;
+
+        const newData = {
+            hora,
+            data,
+            nome
+        };
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newData)
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                throw new Error('Falha ao editar compromisso.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao editar compromisso:', error);
+        });
     }
 
-    //Função para Deletar um compromisso
     function deletarProgramacao() {
-        console.log('Deletando compromisso:', compromisso);
+        const token = localStorage.getItem('token');
+
+        const url = compromisso.tipo === 'tarefa' ? `http://localhost:8080/tarefas/${compromisso.id}` : `http://localhost:8080/eventos/${compromisso.id}`;
+
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Compromisso deletado com sucesso');
+                window.location.reload();
+            } else {
+                throw new Error('Falha ao deletar compromisso.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao deletar compromisso:', error);
+        });
     }
 
-    //Return que mostra um compromisso concatenando  hora data e nome em uma div vindos de compromisso.
     return (
-        <div id="blocoCompromissos" class="blocoCompromissos">
+        <div id="blocoCompromissos" className="blocoCompromissos">
             <div>
-                <a>{compromisso.hora} {compromisso.data} {compromisso.nome}</a>
-                <button id="botaoEditar">Editar</button>
+                <a>{hora} {data} {nome}</a>
+                <button id="botaoEditar" onClick={() => setShowEditor(!showEditor)}>Editar</button>
             </div>
 
-            <div id="editor" class="dropEditor">
-                <form onSubmit={editarProgramacao}>
-                    <div>
-                        <label>Nome</label>
-                        <textarea type="text" value={nome} onChange={e => setNome(e.target.value)} />
-                    </div>
-                    <div>
-                        <label>Data</label>
-                        <input type="date" value={data} onChange={e => setData(e.target.value)} />
-                        <label>Hora</label>
-                        <input type="time" value={hora} onChange={e => setHora(e.target.value)} />
-                    </div>
-                    <input type="submit" value="Salvar" />
-                    <input type="submit" value="Deletar" onClick={deletarProgramacao} />
-                </form>
-            </div>
+            {showEditor && (
+                <div id="editor" className="dropEditor">
+                    <form onSubmit={editarProgramacao}>
+                        <div>
+                            <label>Nome</label>
+                            <textarea value={nome} onChange={e => setNome(e.target.value)} />
+                        </div>
+                        <div>
+                            <label>Data</label>
+                            <input type="date" value={data} onChange={e => setData(e.target.value)} />
+                            <label>Hora</label>
+                            <input type="time" value={hora} onChange={e => setHora(e.target.value)} />
+                        </div>
+                        <input type="submit" value="Salvar" />
+                        <input type="button" value="Deletar" onClick={deletarProgramacao} />
+                    </form>
+                </div>
+            )}
         </div>
     );
 }

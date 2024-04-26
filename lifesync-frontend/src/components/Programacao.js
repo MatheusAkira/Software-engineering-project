@@ -1,28 +1,42 @@
+import React, { useState, useEffect } from 'react';
 import './Programacao.css';
 import Compromisso from './Compromisso';
 
 function Programacao() {
+    const [compromissos, setCompromissos] = useState([]);
 
-    //Criar os dados para mandar para compromisso
-    //nome é text, hora é time e data é date
-    const compromissos = [
-        {nome: 'Reunião', hora: '09:00', data: '2021-10-10'},
-        {nome: 'Consulta', hora: '10:00', data: '2021-10-10'},
-        {nome: 'Almoço', hora: '12:00', data: '2021-10-10'},
-        {nome: 'Reunião', hora: '14:00', data: '2021-10-10'},
-        {nome: 'Consulta', hora: '15:00', data: '2021-10-10'},
-    ];
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            fetch('http://localhost:8080/compromissos', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Falha ao obter compromissos.');
+                }
+            })
+            .then(data => {
+                setCompromissos(data);
+            })
+            .catch(error => {
+                console.error('Erro ao obter compromissos:', error);
+            });
+        }
+    }, []);
 
-
-    //Chamar compromisso
     return(
         <div className="blocoProgramacao">
             {compromissos.map(compromisso => (
-                <Compromisso compromisso={compromisso} />
+                <Compromisso key={compromisso.id} compromisso={compromisso} />
             ))}
         </div>
     );
-
 }
 
 export default Programacao;
