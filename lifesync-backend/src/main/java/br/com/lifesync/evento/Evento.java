@@ -19,17 +19,20 @@ public class Evento {
     private String titulo;
     private LocalDate data;
     private LocalTime hora;
-    private String local;
+    private boolean ativa;
+    private boolean concluida;
     @ManyToOne
     private Usuario usuario;
-
-    public Evento(){}
     
-    public Evento(EventoDTO dto) {
+    // Construtor
+    public Evento() {}
+
+    public Evento(CadastroEventoDTO dto) {
         this.titulo = dto.titulo();
         this.data = LocalDate.parse(dto.data());
         this.hora = LocalTime.parse(dto.hora());
-        this.local = dto.local();
+        this.ativa = true;
+        this.concluida = false;
     }
 
     // Getters e Setters
@@ -64,19 +67,46 @@ public class Evento {
     public void setHora(LocalTime hora) {
         this.hora = hora;
     }
-    
-    public String getLocal() {
-        return local;
+
+    //Métodos de ativação e desativação de eventos
+    public void ativar() {
+        this.ativa = true;
     }
-    
-    public void setLocal(String local) {
-        this.local = local;
+
+    public void desativar() {
+        this.ativa = false;
+    }
+
+    public boolean isAtiva() {
+        return ativa;
+    }
+
+    //Métodos de conclusão de eventos
+    public void concluir() {
+        this.concluida = true;
+    }
+
+    public boolean isConcluida() {
+        return concluida;
     }
     public Usuario getUsuario() {
         return usuario;
     }
-
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    //Método para editar eventos
+    public void atualizarInformacoes(CadastroEventoDTO dto) {
+        if (dto.titulo() != null) {
+            this.titulo = dto.titulo();
+        }
+        if (dto.data() != null) {
+            this.data = LocalDate.parse(dto.data());
+        }
+        if (dto.hora() != null) {
+            this.hora = LocalTime.parse(dto.hora());
+        }
+    }
 }
+
