@@ -8,10 +8,11 @@
 .header {
     background-color: #241B2F;
     height: 1vw + 30px;
-    color: white;
+    color: #D9D9D9;
     display: flex;
     justify-content: space-between; /* Alterado para espaço entre os itens */
     position: relative; /* Adicionado */
+    padding: 10px;
 }
 
 .headerLogo{
@@ -93,35 +94,52 @@
 
 #botaoNovaTarefa{
     float: left;
-    width: 47%;
+    width: 40%;
+    
+    background-color: none;
+    color:none;
 }
 
 #botaoNovoEvento{
-    float: right;
-    width: 47%;
+    float:left;
+    width: 40%;
+    margin-left: 2vw;
+
+    background-color: none;
+    color:none;
 }  
 
+#botaoAudio{
+    float: right;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    background-color: none;
+    color:none;
+    font-size: 40px;
+}
+
 .button{
-    background-color: #D9D9D9; /* Green */
+    background-color: #D9D9D9;
     border: none;
-    color: #241B2F;
+    color: black;
     height: 50px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 20px;
     border-radius: 12px;
     justify-content: space-between;
 }
 .button:hover {
     background-color: #63507B;
+    color: #D9D9D9;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-#coluna2 h2 {
+#coluna2 h1 {
     color: #D9D9D9;
-    background-color: #63507B;
-    border-radius: 12px;
     text-align: center;
     
 }
@@ -137,15 +155,29 @@
 .dropTarefa {
     display: none;
     margin-top: 11vh;
-    margin-bottom: 5vh;
 }
 
 .dropEvento {
     display: none;
     margin-top: 11vh;
-    margin-bottom: 5vh;
 }
 
 .show {
     display: block;
+}
+
+.scrollBar{
+    height: 500px;
+    overflow: auto;
+    /*background-color: #241B2F;*/
+    background-color: #241B2F;
+    border-radius: 15px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    display: none;
 }

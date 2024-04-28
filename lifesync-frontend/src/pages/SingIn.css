@@ -11,7 +11,7 @@
     display: flex;
     align-items: center; /* Centraliza verticalmente */
     justify-content: center; /* Centraliza horizontalmente */
-    margin-bottom: 10px; /* Ajuste conforme necessário */
+    padding-top: 40px;
 }
 
 .logo img {
@@ -33,7 +33,7 @@
     color: #D9D9D9;
     height: 60vh; 
     width: 50%;
-    margin: 2% auto;
+    margin: 0 auto;
     font-size: large;
     text-align: center;
 }
@@ -41,13 +41,19 @@
 .singinBox input {
     border: 2px solid white;
     background-color: #241B2F;
+    color: white;
     border-radius: 12px;
     width: 60%;
     height: 8vh;
     margin: 3% auto;
     display: block;
+    font-size: 20px;
 }
 
+.singinBox h1{
+    font-size: 50px;
+    padding: 10px;
+}
 
 .hoverButton {
     display: inline-block;

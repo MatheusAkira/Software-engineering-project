@@ -51,14 +51,15 @@ function Tarefa() {
     return (
         <div className="blocoTarefa">
             <form onSubmit={cadastrarTarefa}>
+                <a> CADASTRAR NOVA TAREFA </a>
                 <div>
-                    <label>Titulo</label>
+                    <label> Descrição: </label>
                     <textarea type="text" value={titulo} onChange={e => setTitulo(e.target.value)} />
                 </div>
                 <div>
-                    <label>Data</label>
+                    <label> Data: </label>
                     <input type="date" value={data} onChange={e => setData(e.target.value)} />
-                    <label>Hora</label>
+                    <label> Hora: </label>
                     <input type="time" value={hora} onChange={e => setHora(e.target.value)} />
                 </div>
                 <input type="submit" value="Cadastrar" />

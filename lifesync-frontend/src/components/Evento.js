@@ -53,18 +53,19 @@ function Evento() {
     return (
         <div className="blocoEvento">
             <form onSubmit={cadastrarEvento}>
+                <a> CADASTRAR NOVO EVENTO </a>
                 <div>
-                    <label>Descrição</label>
+                    <label> Descrição: </label>
                     <textarea type="text" value={titulo} onChange={e => setTitulo(e.target.value)} />
                 </div>
                 <div>
-                    <label>Local</label>
+                    <label> Local: </label>
                     <input type="text" value={local} onChange={e => setLocal(e.target.value)} />
                 </div>
                 <div>
-                    <label>Data</label>
+                    <label> Data: </label>
                     <input type="date" value={data} onChange={e => setData(e.target.value)} />
-                    <label>Hora</label>
+                    <label> Hora: </label>
                     <input type="time" value={hora} onChange={e => setHora(e.target.value)} />
                 </div>
                 <input type="submit" value="Cadastrar" />

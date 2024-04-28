@@ -7,18 +7,15 @@ function Compromisso({ compromisso }) {
     const [nome, setNome] = useState(compromisso.nome);
 
     const [showEditor, setShowEditor] = useState(false);
-
-    useEffect(() => {
-        document.getElementById('botaoEditar').onclick = function () {
-            setShowEditor((prev) => !prev);
-        };
-    }, []);
+    const [isEditorOpen, setIsEditorOpen] = useState(false);
+    const [isFinished, setIsFinished] = useState(false);
 
     function editarProgramacao(e) {
         e.preventDefault();
         const token = localStorage.getItem('token');
 
         const url = compromisso.tipo === 'tarefa' ? `http://localhost:8080/tarefas/${compromisso.id}` : `http://localhost:8080/eventos/${compromisso.id}`;
+        console.log('Tipo:', compromisso.tipo);
 
         const newData = {
             hora,
@@ -34,16 +31,25 @@ function Compromisso({ compromisso }) {
             },
             body: JSON.stringify(newData)
         })
-        .then(response => {
-            if (response.ok) {
-                window.location.reload();
-            } else {
-                throw new Error('Falha ao editar compromisso.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao editar compromisso:', error);
-        });
+            .then(response => {
+                console.log('Resposta do servidor:', response);
+                if (response.ok) {
+                    // Atualizar o estado do componente com os novos valores
+                    compromisso.hora = hora;
+                    compromisso.data = data;
+                    compromisso.nome = nome;
+                    // Fechar o editor
+                    setShowEditor(false);
+                    setIsEditorOpen(false);
+                    // Forçar a atualização da página
+                    window.location.reload();
+                } else {
+                    throw new Error('Falha ao editar compromisso.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao editar compromisso:', error);
+            });
     }
 
     function deletarProgramacao() {
@@ -57,37 +63,49 @@ function Compromisso({ compromisso }) {
                 'Authorization': `Bearer ${token}`
             }
         })
-        .then(response => {
-            if (response.ok) {
-                console.log('Compromisso deletado com sucesso');
-                window.location.reload();
-            } else {
-                throw new Error('Falha ao deletar compromisso.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao deletar compromisso:', error);
-        });
+            .then(response => {
+                if (response.ok) {
+                    console.log('Compromisso deletado com sucesso');
+                    window.location.reload();
+                } else {
+                    throw new Error('Falha ao deletar compromisso.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao deletar compromisso:', error);
+            });
     }
 
+    const handleEditClick = () => {
+        setShowEditor(!showEditor);
+        setIsEditorOpen(!isEditorOpen);
+    };
+
     return (
-        <div id="blocoCompromissos" className="blocoCompromissos">
+        <div
+            id="blocoCompromissos"
+            className="blocoCompromissos"
+            style={{ backgroundColor: isEditorOpen ? 'red' : 'inherit' }}
+        >
             <div>
-                <a>{hora} {data} {nome}</a>
-                <button id="botaoEditar" onClick={() => setShowEditor(!showEditor)}>Editar</button>
+                <a> {data} {' | '} {hora} {' | '} {nome}</a>
+                <div className='botoesCompromisso'>
+                    <button id="botaoConcluido"> &#10004; </button>
+                    <button id="botaoEditar" onClick={handleEditClick}> &#9998; </button>
+                </div>
             </div>
 
             {showEditor && (
                 <div id="editor" className="dropEditor">
                     <form onSubmit={editarProgramacao}>
                         <div>
-                            <label>Nome</label>
+                            <label> Descrição: </label>
                             <textarea value={nome} onChange={e => setNome(e.target.value)} />
                         </div>
                         <div>
-                            <label>Data</label>
+                            <label> Data: </label>
                             <input type="date" value={data} onChange={e => setData(e.target.value)} />
-                            <label>Hora</label>
+                            <label> Hora: </label>
                             <input type="time" value={hora} onChange={e => setHora(e.target.value)} />
                         </div>
                         <input type="submit" value="Salvar" />

@@ -39,33 +39,32 @@ function Home(){
     }, []); // Executar apenas uma vez após a montagem
     
     return (
-        <div class="container">
-            <div id="header" class="header">
-                <div class="headerLogo">
+        <div className="container">
+            <div id="header" className="header">
+                <div className="headerLogo">
                     <img src={logoLifeSync} className="App-logoLifeSync" alt="logoLifeSync" />
                     <a>LifeSync</a>  
                 </div>
                 
-                <div class="dropdown">
-                    <img src={fotoPerfil} class="dropbtn" alt="fotoPerfil" />
-                    <div class="dropdown-content">
-                        <a href="/home">Home</a>
-                        <a href="/perfil">Perfil</a>
+                <div className="dropdown">
+                    <img src={fotoPerfil} className="dropbtn" alt="fotoPerfil" />
+                    <div className="dropdown-content">
                         <a href="/singIn">Sair</a>
                     </div>
                 </div>       
             </div>
-            <div class="columns">
-                <div id="coluna1" class="column">
+            <div className="columns">
+                <div id="coluna1" className="column">
 
-                    <button id="botaoNovaTarefa" class="button">ADD Tarefa</button>
-                    <button id="botaoNovoEvento" class="button">ADD Evento</button>
+                    <button id="botaoNovaTarefa" className="button">Nova Tarefa</button>
+                    <button id="botaoNovoEvento" className="button">Novo Evento</button>
+                    <button id="botaoAudio" className='button'> &#9737; </button>
                     
-                    <div id="novaTarefa" class="dropTarefa">
+                    <div id="novaTarefa" className="dropTarefa">
                         <Tarefa />
                     </div>
 
-                    <div id="novoEvento" class="dropEvento">
+                    <div id="novoEvento" className="dropEvento">
                        <Evento />
                     </div>
 
@@ -74,9 +73,11 @@ function Home(){
                     </div>
 
                 </div>
-                <div id="coluna2" class="column">
-                    <h2> Programação</h2>
-                    <Programacao />
+                <div id="coluna2" className="column">
+                    <h1> SUA PROGRAMAÇÃO </h1>
+                    <div className='scrollBar'>
+                        <Programacao />
+                    </div>
                 </div>
             </div>
         </div>
