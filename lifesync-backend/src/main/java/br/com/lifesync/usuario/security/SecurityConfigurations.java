@@ -32,6 +32,7 @@ public class SecurityConfigurations {
                     req.requestMatchers(HttpMethod.PUT, "/tarefas/{id}").hasRole("USUARIO");
                     req.requestMatchers(HttpMethod.PATCH, "/tarefas/{id}").hasRole("USUARIO");
                     req.requestMatchers(HttpMethod.DELETE, "/tarefas/{id}").hasRole("USUARIO");
+                    req.requestMatchers(HttpMethod.PATCH, "/tarefas/{id}/concluir").hasRole("USUARIO");
                     req.requestMatchers(HttpMethod.POST, "/eventos").hasRole("USUARIO");
                     req.requestMatchers(HttpMethod.GET, "/eventos").hasRole("USUARIO");
                     req.requestMatchers(HttpMethod.PUT, "/eventos/{id}").hasRole("USUARIO");

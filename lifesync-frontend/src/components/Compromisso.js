@@ -4,23 +4,81 @@ import './Compromisso.css';
 function Compromisso({ compromisso }) {
     const [hora, setHora] = useState(compromisso.hora);
     const [data, setData] = useState(compromisso.data);
-    const [nome, setNome] = useState(compromisso.nome);
+    const [titulo, setTitulo] = useState(compromisso.titulo);
+    const [tarefa, setTarefa] = useState(null);
+    const [localEvento, setLocalEvento] = useState(null);
+
 
     const [showEditor, setShowEditor] = useState(false);
     const [isEditorOpen, setIsEditorOpen] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
 
+    const url = compromisso.tipo === 'tarefa' ? `http://localhost:8080/tarefas/${compromisso.id}` : `http://localhost:8080/eventos/${compromisso.id}`;
+
+    const obterTarefa = async () => {
+        const token = localStorage.getItem('token');
+        const url = `http://localhost:8080/tarefas/${compromisso.id}`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                const dadosTarefa = await response.json();
+                setTarefa(dadosTarefa);
+            } else {
+                console.error('Falha ao obter dados da tarefa');
+            }
+        } catch (error) {
+            console.error('Erro ao obter dados da tarefa:', error);
+        }
+    };
+
+    const obterEvento = async () => {
+        const token = localStorage.getItem('token');
+        const url = `http://localhost:8080/eventos/${compromisso.id}`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                const dadosEvento = await response.json();
+                setLocalEvento(dadosEvento.local);
+            } else {
+                console.error('Falha ao obter dados do evento');
+            }
+        } catch (error) {
+            console.error('Erro ao obter dados do evento:', error);
+        }
+    };
+
+    useEffect(() => {
+        if (compromisso.tipo === 'tarefa') {
+            obterTarefa();
+        } else {
+            obterEvento();
+        }
+    }, [compromisso.tipo, compromisso.id]);
+
     function editarProgramacao(e) {
         e.preventDefault();
         const token = localStorage.getItem('token');
 
-        const url = compromisso.tipo === 'tarefa' ? `http://localhost:8080/tarefas/${compromisso.id}` : `http://localhost:8080/eventos/${compromisso.id}`;
         console.log('Tipo:', compromisso.tipo);
 
         const newData = {
             hora,
             data,
-            nome
+            titulo
         };
 
         fetch(url, {
@@ -37,7 +95,7 @@ function Compromisso({ compromisso }) {
                     // Atualizar o estado do componente com os novos valores
                     compromisso.hora = hora;
                     compromisso.data = data;
-                    compromisso.nome = nome;
+                    compromisso.titulo = titulo;
                     // Fechar o editor
                     setShowEditor(false);
                     setIsEditorOpen(false);
@@ -54,8 +112,6 @@ function Compromisso({ compromisso }) {
 
     function deletarProgramacao() {
         const token = localStorage.getItem('token');
-
-        const url = compromisso.tipo === 'tarefa' ? `http://localhost:8080/tarefas/${compromisso.id}` : `http://localhost:8080/eventos/${compromisso.id}`;
 
         fetch(url, {
             method: 'DELETE',
@@ -76,6 +132,31 @@ function Compromisso({ compromisso }) {
             });
     }
 
+    function concluirTarefa() {
+        const token = localStorage.getItem('token');
+        const url = `http://localhost:8080/tarefas/${compromisso.id}/concluir`;
+
+        fetch(url, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Marcar a tarefa como concluída
+                //setIsConcluida(true);
+                console.log('Tarefa concluída com sucesso');
+            } else {
+                console.error('Falha ao concluir a tarefa');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao concluir a tarefa:', error);
+        });
+    }    
+
     const handleEditClick = () => {
         setShowEditor(!showEditor);
         setIsEditorOpen(!isEditorOpen);
@@ -88,9 +169,11 @@ function Compromisso({ compromisso }) {
             style={{ backgroundColor: isEditorOpen ? 'red' : 'inherit' }}
         >
             <div>
-                <a> {data} {' | '} {hora} {' | '} {nome}</a>
+                <a> {data} {' | '} {hora} {' | '} {titulo}</a>
                 <div className='botoesCompromisso'>
-                    <button id="botaoConcluido"> &#10004; </button>
+                    {compromisso.tipo === 'tarefa' && (
+                        <button id="botaoConcluido" onClick={concluirTarefa}> &#10004; </button>
+                    )}
                     <button id="botaoEditar" onClick={handleEditClick}> &#9998; </button>
                 </div>
             </div>
@@ -100,7 +183,13 @@ function Compromisso({ compromisso }) {
                     <form onSubmit={editarProgramacao}>
                         <div>
                             <label> Descrição: </label>
-                            <textarea value={nome} onChange={e => setNome(e.target.value)} />
+                            <textarea value={titulo} onChange={e => setTitulo(e.target.value)} />
+                        </div>
+                        <div>
+                            <label> Local: </label>
+                            {compromisso.tipo === 'evento' &&
+                                (<textarea value={localEvento} onChange={e => setLocalEvento(e.target.value)} />
+                            )}
                         </div>
                         <div>
                             <label> Data: </label>
