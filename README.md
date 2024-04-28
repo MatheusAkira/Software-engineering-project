@@ -120,7 +120,7 @@ As principais funcionalidades incluem a capacidade de gerenciar eventos e tarefa
 - [x] Tarefa 4: Desenvolver funcionalidade de autenticação para login [Iasmin]
 
 #### *Adicional*
-### 5. Criar funcionalidade de criar eventos e tarefas utilizando comandos de voz: 
+### 5. Criar eventos e tarefas utilizando comandos de voz: 
 - [x] **Tarefa 1: Criar botão de comando de voz [Thaís]**
 - [x] **Tarefa 2: Implementar no backend a lógica de comando de voz [Matheus]**
 
