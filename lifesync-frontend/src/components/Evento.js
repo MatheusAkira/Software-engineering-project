@@ -41,6 +41,9 @@ function Evento() {
             if (response.ok) {
                 console.log('Evento cadastrado com sucesso!');
                 // Adicione qualquer lógica adicional após o cadastro bem-sucedido
+
+                // Forçar a atualização da página
+                window.location.reload();
             } else {
                 console.error('Falha ao cadastrar evento.');
             }

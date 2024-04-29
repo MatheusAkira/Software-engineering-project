@@ -39,6 +39,9 @@ function Tarefa() {
             if (response.ok) {
                 console.log('Tarefa cadastrada com sucesso!');
                 // Adicione qualquer lógica adicional após o cadastro bem-sucedido
+                
+                // Forçar a atualização da página
+                window.location.reload();
             } else {
                 console.error('Falha ao cadastrar tarefa.');
             }

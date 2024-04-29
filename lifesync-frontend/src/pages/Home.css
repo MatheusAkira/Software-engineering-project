@@ -20,7 +20,13 @@
     width: 95%;
     align-items: center;
     text-align: center;
-    font-size:xx-large;
+    font-size: 40px;
+}
+
+.headerLogo img{
+    width: 35px; /* Ajuste conforme necessário */
+    height: 35px; /* Ajuste conforme necessário */
+    border-radius: 50%;
 }
 
 .dropbtn{

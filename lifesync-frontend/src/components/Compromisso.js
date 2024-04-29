@@ -149,6 +149,7 @@ function Compromisso({ compromisso }) {
                 // Marcar a tarefa como concluída
                 //setIsConcluida(true);
                 console.log('Tarefa concluída com sucesso');
+                window.location.reload();
             } else {
                 console.error('Falha ao concluir a tarefa');
             }
@@ -161,16 +162,26 @@ function Compromisso({ compromisso }) {
     const handleEditClick = () => {
         setShowEditor(!showEditor);
         setIsEditorOpen(!isEditorOpen);
-    };
+    }
+    
+    
+    const concluidaStyle = {
+        opacity: 0.3, // Define a opacidade em 50%
+      };
 
     return (
         <div
             id="blocoCompromissos"
             className="blocoCompromissos"
-            style={{ backgroundColor: isEditorOpen ? 'red' : 'inherit' }}
+            style={{ backgroundColor: isEditorOpen ? '#63507B' : 'inherit' }}
         >
             <div>
-                <a> {data} {' | '} {hora} {' | '} {titulo}</a>
+                {tarefaConcluida && (
+                    <a style={concluidaStyle}> <del> {data} {' | '} {hora} {' | '} {titulo} </del> </a>
+                )}
+                {!tarefaConcluida && (
+                    <a> {data} {' | '} {hora} {' | '} {titulo}</a>
+                )}
                 <div className='botoesCompromisso'>
                     {compromisso.tipo === 'tarefa' && (
                         <button id="botaoConcluido" onClick={concluirTarefa}> &#10004; </button>
