@@ -261,10 +261,10 @@ graph TD
     style S fill:#4B396C,stroke:#333,stroke-width:2px,color:white;
     A[Iniciar Aplicativo] --> B{Usuário está logado?}
     B -->|Sim| C{Escolher entre opções}
-    C -->|Add Tarefa| D[Preencher informações da tarefa]
+    C -->|Adicionar Tarefa| D[Preencher informações da tarefa]
     D --> E[Salvar tarefa]
     E --> F[Tarefa criada com sucesso]
-    C -->|Add Evento| G[Preencher informações do evento]
+    C -->|Adicionar Evento| G[Preencher informações do evento]
     G --> H[Salvar evento]
     H --> I[Evento criado com sucesso]
     C -->|Editar ou Excluir Tarefa/Evento| J[Selecionar tarefa ou evento para editar/excluir]
