@@ -34,7 +34,7 @@ public class CompromissoService {
         Usuario usuario = usuarioService.obterUsuarioLogado();
         List<Compromisso> compromissos = new ArrayList<>();
         compromissos.addAll(tarefaRepository.findByUsuarioAndAtivaTrue(usuario));
-        compromissos.addAll(eventoRepository.findByUsuario(usuario));
+        compromissos.addAll(eventoRepository.findByUsuarioAndAtivoTrue(usuario));
         return compromissos;
     }
 

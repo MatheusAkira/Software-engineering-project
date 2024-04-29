@@ -18,9 +18,10 @@ public class Evento extends Compromisso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
+    private String local;
     private LocalDate data;
     private LocalTime hora;
-    private boolean ativa;
+    private boolean ativo;
     private boolean concluida;
     @ManyToOne
     private Usuario usuario;
@@ -32,7 +33,8 @@ public class Evento extends Compromisso {
         this.titulo = dto.titulo();
         this.data = LocalDate.parse(dto.data());
         this.hora = LocalTime.parse(dto.hora());
-        this.ativa = true;
+        this.local = dto.local();
+        this.ativo = true;
         this.concluida = false;
     }
 
@@ -64,6 +66,10 @@ public class Evento extends Compromisso {
     public LocalTime getHora() {
         return hora;
     }
+
+    public String getLocal() {
+        return local;
+    }
     
     public void setHora(LocalTime hora) {
         this.hora = hora;
@@ -71,15 +77,15 @@ public class Evento extends Compromisso {
 
     //Métodos de ativação e desativação de eventos
     public void ativar() {
-        this.ativa = true;
+        this.ativo = true;
     }
 
     public void desativar() {
-        this.ativa = false;
+        this.ativo = false;
     }
 
-    public boolean isAtiva() {
-        return ativa;
+    public boolean isAtivo() {
+        return ativo;
     }
 
     //Métodos de conclusão de eventos
@@ -107,6 +113,9 @@ public class Evento extends Compromisso {
         }
         if (dto.hora() != null) {
             this.hora = LocalTime.parse(dto.hora());
+        }
+        if (dto.local() != null) {
+            this.local = dto.local();
         }
     }
 }

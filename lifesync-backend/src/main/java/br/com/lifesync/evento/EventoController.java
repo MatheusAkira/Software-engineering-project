@@ -15,7 +15,7 @@ public class EventoController {
     private EventoService eventoService;
 
     @PostMapping
-    public ResponseEntity<Void> adicionarEvento(@Valid @RequestBody CadastroEventoDTO dto) {
+    public ResponseEntity<Void> adicionarEvento(@RequestBody CadastroEventoDTO dto) {
         eventoService.adicionarEvento(dto);
         return ResponseEntity.created(URI.create("/eventos")).build();
     }
@@ -27,7 +27,7 @@ public class EventoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> editarEvento(@PathVariable Long id, @Valid @RequestBody CadastroEventoDTO dto) {
+    public ResponseEntity<Void> editarEvento(@PathVariable Long id, @RequestBody CadastroEventoDTO dto) {
         eventoService.editarEvento(id, dto);
         return ResponseEntity.noContent().build();
     }
@@ -35,12 +35,6 @@ public class EventoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluirEvento(@PathVariable Long id) {
         eventoService.excluirEvento(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PatchMapping("/{id}/concluir")
-    public ResponseEntity<Void> marcarEventoComoConcluido(@PathVariable Long id) {
-        eventoService.marcarEventoComoConcluido(id);
         return ResponseEntity.noContent().build();
     }
 }

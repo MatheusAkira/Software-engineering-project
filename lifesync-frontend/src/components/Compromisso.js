@@ -5,8 +5,8 @@ function Compromisso({ compromisso }) {
     const [hora, setHora] = useState(compromisso.hora);
     const [data, setData] = useState(compromisso.data);
     const [titulo, setTitulo] = useState(compromisso.titulo);
-    const [tarefa, setTarefa] = useState(null);
-    const [localEvento, setLocalEvento] = useState(null);
+    const [tarefaConcluida, setTarefa] = useState(null);
+    const [local, setLocalEvento] = useState(null);
 
 
     const [showEditor, setShowEditor] = useState(false);
@@ -17,7 +17,6 @@ function Compromisso({ compromisso }) {
 
     const obterTarefa = async () => {
         const token = localStorage.getItem('token');
-        const url = `http://localhost:8080/tarefas/${compromisso.id}`;
 
         try {
             const response = await fetch(url, {
@@ -29,7 +28,7 @@ function Compromisso({ compromisso }) {
 
             if (response.ok) {
                 const dadosTarefa = await response.json();
-                setTarefa(dadosTarefa);
+                setTarefa(dadosTarefa.concluida);
             } else {
                 console.error('Falha ao obter dados da tarefa');
             }
@@ -40,7 +39,6 @@ function Compromisso({ compromisso }) {
 
     const obterEvento = async () => {
         const token = localStorage.getItem('token');
-        const url = `http://localhost:8080/eventos/${compromisso.id}`;
 
         try {
             const response = await fetch(url, {
@@ -78,7 +76,8 @@ function Compromisso({ compromisso }) {
         const newData = {
             hora,
             data,
-            titulo
+            titulo,
+            local
         };
 
         fetch(url, {
@@ -96,6 +95,8 @@ function Compromisso({ compromisso }) {
                     compromisso.hora = hora;
                     compromisso.data = data;
                     compromisso.titulo = titulo;
+                    compromisso.local = local;
+                    
                     // Fechar o editor
                     setShowEditor(false);
                     setIsEditorOpen(false);
@@ -185,12 +186,13 @@ function Compromisso({ compromisso }) {
                             <label> Descrição: </label>
                             <textarea value={titulo} onChange={e => setTitulo(e.target.value)} />
                         </div>
-                        <div>
-                            <label> Local: </label>
-                            {compromisso.tipo === 'evento' &&
-                                (<textarea value={localEvento} onChange={e => setLocalEvento(e.target.value)} />
-                            )}
-                        </div>
+                        {compromisso.tipo === 'evento' && (
+                            <div>
+                                <label> Local: </label>
+                                <textarea value={local} onChange={e => setLocalEvento(e.target.value)} />
+                                
+                            </div>
+                        )} 
                         <div>
                             <label> Data: </label>
                             <input type="date" value={data} onChange={e => setData(e.target.value)} />

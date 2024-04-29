@@ -44,13 +44,4 @@ public class EventoService {
             evento.desativar();
         }
     }
-
-    @Transactional
-    public void marcarEventoComoConcluido(Long id) {
-        Optional<Evento> optionalEvento = eventoRepository.findById(id);
-        if (optionalEvento.isPresent()) {
-            Evento evento = optionalEvento.get();
-            evento.concluir();
-        }
-    }
 }
