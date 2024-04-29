@@ -6,6 +6,7 @@ function Tarefa() {
     const [data, setData] = useState('');
     const [hora, setHora] = useState('');
     const [token, setToken] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         // Obter token de autenticação do localStorage
@@ -18,6 +19,20 @@ function Tarefa() {
 
     function cadastrarTarefa(e) {
         e.preventDefault();
+        
+        // Validação dos campos
+        if (!titulo.trim()) {
+            setErrorMessage('Por favor, preencha a descrição da tarefa.');
+            return;
+        }
+        if (!data.trim()) {
+            setErrorMessage('Por favor, preencha a data da tarefa.');
+            return;
+        }
+        if (!hora.trim()) {
+            setErrorMessage('Por favor, preencha a hora da tarefa.');
+            return;
+        }
         
         const formData = {
             titulo: titulo,
@@ -44,10 +59,12 @@ function Tarefa() {
                 window.location.reload();
             } else {
                 console.error('Falha ao cadastrar tarefa.');
+                setErrorMessage('Houve um erro ao cadastrar a tarefa. Por favor, tente novamente.');
             }
         })
         .catch(error => {
             console.error('Erro ao cadastrar tarefa:', error);
+            setErrorMessage('Houve um erro ao cadastrar a tarefa. Por favor, tente novamente.');
         });
     }
 
@@ -66,6 +83,7 @@ function Tarefa() {
                     <input type="time" value={hora} onChange={e => setHora(e.target.value)} />
                 </div>
                 <input type="submit" value="Cadastrar" />
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
             </form>
         </div>
     );

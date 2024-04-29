@@ -7,6 +7,7 @@ function Evento() {
     const [hora, setHora] = useState('');
     const [local, setLocal] = useState('');
     const [token, setToken] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         // Obter token de autenticação do localStorage
@@ -19,6 +20,24 @@ function Evento() {
 
     function cadastrarEvento(e) {
         e.preventDefault();
+        
+        // Validação dos campos
+        if (!titulo.trim()) {
+            setErrorMessage('Por favor, preencha a descrição do evento.');
+            return;
+        }
+        if (!local.trim()) {
+            setErrorMessage('Por favor, preencha o local do evento.');
+            return;
+        }
+        if (!data.trim()) {
+            setErrorMessage('Por favor, preencha a data do evento.');
+            return;
+        }
+        if (!hora.trim()) {
+            setErrorMessage('Por favor, preencha a hora do evento.');
+            return;
+        }
         
         const formData = {
             titulo: titulo,
@@ -46,10 +65,12 @@ function Evento() {
                 window.location.reload();
             } else {
                 console.error('Falha ao cadastrar evento.');
+                setErrorMessage('Houve um erro ao cadastrar o evento. Por favor, tente novamente.');
             }
         })
         .catch(error => {
             console.error('Erro ao cadastrar evento:', error);
+            setErrorMessage('Houve um erro ao cadastrar o evento. Por favor, tente novamente.');
         });
     }
 
@@ -57,6 +78,7 @@ function Evento() {
         <div className="blocoEvento">
             <form onSubmit={cadastrarEvento}>
                 <a> CADASTRAR NOVO EVENTO </a>
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
                 <div>
                     <label> Descrição: </label>
                     <textarea type="text" value={titulo} onChange={e => setTitulo(e.target.value)} />
