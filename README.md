@@ -123,6 +123,7 @@ As principais funcionalidades incluem a capacidade de gerenciar eventos e tarefa
 ### 5. Criar eventos e tarefas utilizando comando de voz: 
 - [x] **Tarefa 1: Criar botão de comando de voz [Thaís]**
 - [x] **Tarefa 2: Implementar no backend a lógica de comando de voz [Matheus]**
+- [ ] **Tarefa 3: Integrar funcionalidade com o front-end [Matheus]**
 
 ## Diagramas UML
 ### Diagrama de Classes
@@ -221,7 +222,17 @@ stateDiagram
 
     state if_Logado <<choice>>
     Usuário_Logado --> if_Logado
-    if_Logado --> Realizar_Login: Não
+    if_Logado --> Possui_Cadastro: Não
+
+    state if_Cadastrado <<choice>>
+    Possui_Cadastro --> if_Cadastrado
+    if_Cadastrado --> Realizar_Cadastro: Não
+    if_Cadastrado --> Realizar_Login: Sim
+
+    Realizar_Cadastro --> Preencher_Informações_Cadastro
+    Preencher_Informações_Cadastro --> Salvar_Cadastro
+    Salvar_Cadastro --> Cadastro_Criado_Com_Sucesso
+    Cadastro_Criado_Com_Sucesso --> Realizar_Login
 
     state join_Login <<join>>
     if_Logado --> join_Login: Sim
