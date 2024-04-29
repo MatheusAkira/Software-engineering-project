@@ -11,14 +11,26 @@ function SingUp(){
 
     function validarUsuario(e){
         e.preventDefault();
-
+    
+        // Verificar se algum dos campos está vazio
+        if (nome.trim() === '' || email.trim() === '' || senha.trim() === '') {
+            alert("Por favor, preencha todos os campos.");
+            return; // Aborta a função se algum campo estiver vazio
+        }
+    
+        // Verificar se o email e senha têm pelo menos 8 caracteres
+        if (senha.length < 8) {
+            alert("A senha deve ter pelo menos 8 caracteres.");
+            return; // Aborta a função se a senha for menor que 8 caracteres
+        }
+    
         // Criar objeto com os dados do formulário
         const formData = {
             nome: nome,
             email: email,
             senha: senha
         };
-
+    
         // Enviar os dados para o backend via POST usando Fetch API
         fetch('http://localhost:8080/signin', {
             method: 'POST',
@@ -34,19 +46,24 @@ function SingUp(){
             return response.text(); // Retorna o texto da resposta
         })
         .then(data => {
-            if (data) {
-                const jsonData = JSON.parse(data); // Faz o parse apenas se houver dados
-                console.log('Usuário cadastrado com sucesso:', jsonData);
+            if (data === "Email já está em uso") {
+                alert("Este email já está em uso. Por favor, use outro.");
             } else {
-                console.log('Usuário cadastrado com sucesso, sem dados adicionais.');
+                if (data) {
+                    const jsonData = JSON.parse(data); // Faz o parse apenas se houver dados
+                    console.log('Usuário cadastrado com sucesso:', jsonData);
+                } else {
+                    console.log('Usuário cadastrado com sucesso, sem dados adicionais.');
+                }
+                // redirecionar para a página de login
+                window.location.href = '/singin';
             }
-            // redirecionar para a página home
-            window.location.href = '/singin';
         })
         .catch(error => {
             console.error('Erro ao cadastrar usuário:', error);
         });
-    }
+    } 
+    
 
     return (
         <div className="signup-container">

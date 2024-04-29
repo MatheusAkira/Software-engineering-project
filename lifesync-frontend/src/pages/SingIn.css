@@ -73,10 +73,14 @@
     margin: 3% auto;
 }
   
-.hoverButton:hover {background-color: #3e8e41}
+.hoverButton:hover {
+    background-color: #D9D9D9;
+    color:  black;
+}
   
 .hoverButton:active {
     background-color: #63507B;
+    color: #D9D9D9;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }

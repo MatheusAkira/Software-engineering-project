@@ -10,13 +10,19 @@ function SingIn(){
 
     function validarUsuario(e){
         e.preventDefault();
-        
+    
+        // Verificar se o email e senha têm pelo menos 8 caracteres
+        if (senha.length < 8) {
+            alert("Senha devem ter pelo menos 8 caracteres.");
+            return; // Aborta a função se a senha for menor que 8 caracteres
+        }
+    
         // Criar objeto com os dados do formulário
         const formData = {
             email: email,
             senha: senha
         };
-
+    
         // Enviar os dados para o backend via POST usando Fetch API
         fetch('http://localhost:8080/login', {
             method: 'POST',
@@ -40,8 +46,10 @@ function SingIn(){
         })
         .catch(error => {
             console.error('Erro ao efetuar login:', error);
+            alert("Email ou senha incorretos.");
         });
     }
+    
 
     return (
         <div className="signin-container">
