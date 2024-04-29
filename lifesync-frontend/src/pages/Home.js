@@ -58,7 +58,7 @@ function Home(){
 
                     <button id="botaoNovaTarefa" className="button">Nova Tarefa</button>
                     <button id="botaoNovoEvento" className="button">Novo Evento</button>
-                    <button id="botaoAudio" className='button'> &#9737; </button>
+                    <button id="botaoAudio" className="button" onClick={() => {}}><i className="gg-mic"></i></button>
                     
                     <div id="novaTarefa" className="dropTarefa">
                         <Tarefa />
