@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+//Entidade que representa um evento
 @Entity
 @Table(name = "eventos")
 public class Evento extends Compromisso {
@@ -104,7 +105,7 @@ public class Evento extends Compromisso {
     }
 
     //Método para editar eventos
-    public void atualizarInformacoes(CadastroEventoDTO dto) {
+    public void atualizarInformacoes(EdicaoEventoDTO dto) {
         if (dto.titulo() != null) {
             this.titulo = dto.titulo();
         }

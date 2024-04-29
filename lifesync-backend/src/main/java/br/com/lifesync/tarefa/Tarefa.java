@@ -10,7 +10,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 
+//Entidade que representa uma tarefa
 @Entity
 @Table(name = "tarefas")
 public class Tarefa extends Compromisso {
@@ -98,7 +100,7 @@ public class Tarefa extends Compromisso {
     }
 
     //Método para editar tarefas
-    public void atualizarInformacoes(CadastroTarefaDTO dto) {
+    public void atualizarInformacoes(@Valid EdicaoTarefaDTO dto) {
         if (dto.titulo() != null) {
             this.titulo = dto.titulo();
         }

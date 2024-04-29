@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+//Entidade que representa um usuário
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements UserDetails {
@@ -24,6 +25,7 @@ public class Usuario implements UserDetails {
     private String senha;
     private Role role;
 
+    // Construtor
     public Usuario() {
     }
 
@@ -34,6 +36,7 @@ public class Usuario implements UserDetails {
         this.role = role;
     }
 
+    // Getters
     public Long getId() {
         return id;
     }
@@ -46,6 +49,7 @@ public class Usuario implements UserDetails {
         return email;
     }
 
+    // Métodos da interface UserDetails
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.role == Role.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USUARIO"));
